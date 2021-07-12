@@ -9,7 +9,6 @@ namespace SpaceShip
 {
     public abstract class CreateEnemy
     {
-        protected bool isCollide = false;
         protected PictureBox parentBox;
         protected PictureBox enemy;
         protected Engine engine;
