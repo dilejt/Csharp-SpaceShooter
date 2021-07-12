@@ -178,8 +178,6 @@ namespace SpaceShip
         public bool escKey = false;
         private bool isMenuShowed = false;
         private bool isShooted = false;
-        public bool isEnemySmall = false;
-        public bool isEnemyBig = false;
 
         public PictureBox pictureBoxBg;
         public PictureBox playerModel;
@@ -219,12 +217,12 @@ namespace SpaceShip
             labelScore.BackColor = Color.Transparent;
             labelScore.ForeColor = Color.AntiqueWhite;
             labelScore.AutoSize = true;
-            labelScore.Font = new Font(labelScore.Font.FontFamily, 16, FontStyle.Regular);
-            /*
+            //labelScore.Font = new Font(labelScore.Font.FontFamily, 16, FontStyle.Regular);
+            /**/
             PrivateFontCollection customFont = new PrivateFontCollection();
             customFont.AddFontFile(@"DS-DIGIB.ttf");
             labelScore.Font = new Font(customFont.Families[0], 16, FontStyle.Regular);
-            */
+            /**/
             pictureBoxBg.Controls.Add(labelScore);
 
             labelTime = new Label();
@@ -233,11 +231,10 @@ namespace SpaceShip
             labelTime.Top = 0;
             labelTime.AutoSize = true;
             labelTime.Left = pictureBoxBg.Width - labelTime.Width;
-            labelTime.Font = new Font(labelTime.Font.FontFamily, 16, FontStyle.Regular);
-            /*
-            customFont.AddFontFile(@"DS-DIGIB.ttf");
+            //labelTime.Font = new Font(labelTime.Font.FontFamily, 16, FontStyle.Regular);
+            /**/
             labelTime.Font = new Font(customFont.Families[0], 16, FontStyle.Regular);
-            */
+            /**/
             pictureBoxBg.Controls.Add(labelTime);
 
             hpBar = new PictureBox();
@@ -301,16 +298,6 @@ namespace SpaceShip
             ,Properties.Resources.hp13,Properties.Resources.hp14,Properties.Resources.hp15,Properties.Resources.hp16
             ,Properties.Resources.hp17,Properties.Resources.hp18,Properties.Resources.hp19,Properties.Resources.hp20};
             animate = new HpAnimation(hpPictures);
-            
-            Bitmap bitmapExplosion = new Bitmap(70, 70);
-            explosionPictures = new Bitmap[] { Properties.Resources.explosion1,
-                Properties.Resources.explosion2, Properties.Resources.explosion3, Properties.Resources.explosion4,
-            Properties.Resources.explosion5,Properties.Resources.explosion6,Properties.Resources.explosion7,Properties.Resources.explosion8,
-            Properties.Resources.explosion9,Properties.Resources.explosion10,Properties.Resources.explosion11,Properties.Resources.explosion12
-            ,Properties.Resources.explosion13,Properties.Resources.explosion14,Properties.Resources.explosion15,Properties.Resources.explosion16
-            ,Properties.Resources.explosion17,Properties.Resources.explosion18,Properties.Resources.explosion19,Properties.Resources.explosion20
-            ,Properties.Resources.explosion21,Properties.Resources.explosion22,Properties.Resources.explosion23,Properties.Resources.explosion24
-            ,Properties.Resources.explosion25,Properties.Resources.explosion26};
         }
 
         private void pauseTimer_Tick(object sender, EventArgs e)
@@ -475,7 +462,7 @@ namespace SpaceShip
             explosion.Size = new Size(70, 70);
             explosion.Location = new Point(x, y);
             pictureBoxBg.Controls.Add(explosion);
-            explosionAnimation = new ExplosionAnimation(explosionPictures);
+            explosionAnimation = new ExplosionAnimation();
             _ = explosionAnimation.GiveNextImageAsync(explosion);
         }
         private void destroySprite(Control control)
